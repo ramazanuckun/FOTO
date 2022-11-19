@@ -1,6 +1,5 @@
 package utilities;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,22 +32,17 @@ public class Driver {
         if (driver == null) {               // burda driverin değeri null ise yani driver açık değilse bize driveri açsın,çalıştırsın
             switch (ConfigReader.getProperty("browser")) {
                 case "safari" :
-                    WebDriverManager.safaridriver().setup();
                     driver = new SafariDriver();
                     break;
                 case "firefox" :
-                    WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     break;
                 case "edge" :
-                    WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     break;
                 case "headless-chrome":
-                    WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
                 default:
-                    WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
             }
             driver.manage().window().maximize();
